@@ -37,3 +37,9 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Nix / direnv
+.direnv/
+.envrc
+flake.Nix
+flake.lock
