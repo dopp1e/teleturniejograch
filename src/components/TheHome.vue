@@ -4,16 +4,19 @@ import type { Team, Result } from "@/lib";
 let teamA: Team = {
   id: "1",
   name: "Team A",
+  hexColor: "#ababab",
   members: ["Alice", "Bob"],
 };
 let teamB: Team = {
   id: "2",
   name: "Team B",
+  hexColor: "#ababab",
   members: ["Charlie", "David"],
 };
 let teamC: Team = {
   id: "3",
   name: "Team C",
+  hexColor: "#ababab",
   members: ["Eve", "Frank"],
 };
 
