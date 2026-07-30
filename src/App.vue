@@ -9,7 +9,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Separator } from "@/components/ui/separator";
-import { HomeIcon } from "lucide-vue-next";
+import { HomeIcon, ChessQueen, BadgeQuestionMark } from "lucide-vue-next";
 import NavIcon from "@/components/NavIcon.vue";
 </script>
 
@@ -22,18 +22,22 @@ import NavIcon from "@/components/NavIcon.vue";
         <NavigationMenuItem class="flex-1 p-2">
           <NavigationMenuLink as-child>
             <RouterLink to="/"
-              ><NavIcon text="Home"><HomeIcon></HomeIcon></NavIcon
+              ><NavIcon text="Home"><HomeIcon /></NavIcon
             ></RouterLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem class="flex-1">
           <NavigationMenuLink as-child>
-            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/about">
+              <NavIcon text="about"><BadgeQuestionMark /></NavIcon>
+            </RouterLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem class="flex-1">
           <NavigationMenuLink as-child>
-            <RouterLink to="/bracket">Bracket</RouterLink>
+            <RouterLink to="/bracket">
+              <NavIcon text="bracket"><ChessQueen /></NavIcon>
+            </RouterLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
