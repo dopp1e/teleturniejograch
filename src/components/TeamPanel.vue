@@ -33,16 +33,19 @@ const editTeam = (p) => form.value.open(p)
             @change="store.setTeams"
             v-slot="{ item }"
         >
-            <div
-                class="rounded-lg border-2 p-3"
-                :style="item.hexColor ? { borderColor: item.hexColor } : undefined"
-            >
-                <div class="font-medium">{{ item.name }}</div>
-                <div v-if="item.members.length" class="text-muted-foreground text-sm">
-                    {{ item.members.join(', ') }}
-                </div>
-                <div v-else class="text-muted-foreground text-sm italic">No members</div>
+        <div class="flex items-center justify-between gap-2">
+        <div>
+            <div class="font-medium">{{ item.name }}</div>
+            <div v-if="item.members.length" class="text-muted-foreground text-sm">
+                {{ item.members.join(', ') }}
             </div>
+            <div v-else class="text-muted-foreground text-sm italic">No members</div>
+        </div>
+        <span
+            class="inline-block size-3 rounded-full border"
+            :style="{ backgroundColor: item.hexColor }"
+        />
+    </div>
         </GenericList>
     </div>
     <TeamForm ref="form" />
