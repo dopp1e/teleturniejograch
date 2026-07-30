@@ -22,19 +22,39 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { X } from 'lucide-vue-next'
+import {
+    ColorPickerRoot,
+    ColorPickerCanvas,
+    ColorPickerSliderHue,
+    ColorPickerSliderAlpha,
+    ColorPickerSwatch,
+    ColorPickerInputHex,
+    ColorPickerEyeDropper,
+} from '@vuelor/picker'
 
 type MemberRow = { key: number; value: string }
 
+const PRESETS = [
+    '#F87171', '#FB923C', '#FBBF24', '#34D399',
+    '#60A5FA', '#A78BFA', '#F472B6', '#94A3B8',
+]
+
+
 const visible = ref(false)
 const title = ref('New team')
-const draft = ref<{ id: string; name: string; members: MemberRow[] }>({
+const draft = ref<{ id: string; name: string; hexColor:string; members: MemberRow[] }>({
     id: '',
     name: '',
+    hexColor: randomPreset(),
     members: [],
 })
 
 let seq = 0
 let resolver: ((team: Team | null) => void) | null = null
+
+function randomPreset(): string {
+    return PRESETS[Math.floor(Math.random() * PRESETS.length)] ?? PRESETS[0]!
+}
 
 function newId(): string {
     return globalThis.crypto?.randomUUID?.() ?? `t_${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`
@@ -45,6 +65,7 @@ function open(initial: Partial<Team> = {}): Promise<Team | null> {
     draft.value = {
         id: initial.id ?? newId(),
         name: initial.name ?? '',
+        hexColor: initial.hexColor ?? randomPreset(),
         members: (initial.members ?? []).map((value) => ({ key: seq++, value })),
     }
     visible.value = true
@@ -70,6 +91,7 @@ function save() {
     resolve?.({
         id: draft.value.id,
         name,
+        hexColor: draft.value.hexColor,
         members: draft.value.members.map((m) => m.value.trim()).filter(Boolean),
     })
 }
@@ -99,6 +121,27 @@ defineExpose({ open })
                 <div class="grid gap-2">
                     <Label for="team-name">Team name</Label>
                     <Input id="team-name" v-model="draft.name" placeholder="e.g. Red Rockets" @keyup.enter="save" />
+                </div>
+
+                <div class="grid gap-2">
+                    <Label class="flex items-center gap-2">
+                        Team color
+                        <span
+                            class="inline-block size-3 rounded-full border"
+                            :style="{ backgroundColor: draft.hexColor }"
+                        />
+                    </Label>
+                    <ColorPickerRoot v-model="draft.hexColor" format="hex" class="grid gap-3">
+                        <ColorPickerCanvas class="h-40 w-full rounded-md" />
+                        <ColorPickerSliderHue />
+                        <div class="flex flex-wrap gap-1">
+                            <ColorPickerSwatch v-for="preset in PRESETS" :key="preset" :value="preset" />
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <ColorPickerInputHex class="flex-1" />
+                            <ColorPickerEyeDropper />
+                        </div>
+                    </ColorPickerRoot>
                 </div>
 
                 <div class="grid gap-2">

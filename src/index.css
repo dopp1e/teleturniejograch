@@ -5,10 +5,24 @@
 
 @import "tailwindcss";
 @import "tw-animate-css";
+@source "../../node_modules/@vuelor/picker";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-vuelor-primary: #0d99ff;
+  --color-vuelor-surface: #ffffff;
+  --color-vuelor-border: #e6e6e6;
+  --color-vuelor-input: #f5f5f5;
+
+  --shadow-vuelor-card: 0 2px 5px 0 #00000026, 0 10px 16px 0 #0000001f, 0 0 .5px 0 #0000001f;
+  --shadow-vuelor-thumb: 0px 0px .5px #0000002e, 0px 3px 8px #0000001a, 0px 1px 3px #0000001a;
+  --shadow-vuelor-inner: inset 0 0 0 1px #0000001a;
+
+  /* Gradient editor only */
+  --drop-shadow-vuelor-thumb: 0px 0px .5px #00000054, 0px 1px 3px #00000026;
+
+
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
