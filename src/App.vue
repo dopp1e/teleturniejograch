@@ -31,6 +31,11 @@ import NavIcon from "@/components/NavIcon.vue";
             <RouterLink to="/about">About</RouterLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem class="flex-1">
+          <NavigationMenuLink as-child>
+            <RouterLink to="/bracket">Bracket</RouterLink>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   </div>
