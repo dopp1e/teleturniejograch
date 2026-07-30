@@ -15,7 +15,9 @@ import NavIcon from "@/components/NavIcon.vue";
 
 <template>
   <div class="h-screen flex flex-col">
-    <RouterView class="grow" />
+    <div class="flex-1">
+      <RouterView class="grow" />
+    </div>
     <Separator />
     <NavigationMenu class="flex-none w-screen">
       <NavigationMenuList class="flex gap-4">
