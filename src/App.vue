@@ -42,6 +42,13 @@ import NavIcon from "@/components/NavIcon.vue";
             </RouterLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem class="flex-1">
+          <NavigationMenuLink as-child>
+            <RouterLink to="/questions">
+              <NavIcon text="questions"><BadgeQuestionMark /></NavIcon>
+            </RouterLink>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   </div>
